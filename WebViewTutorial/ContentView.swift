@@ -1,16 +1,17 @@
 //
 //  ContentView.swift
 //  WebViewTutorial
-//
-//  Created by Federico on 27/10/2021.
-//
+// test  for liveeq webview with WKWebView api
 
 import SwiftUI
 import WebKit
 
+
+
+
 struct ContentView: View {
     @State private var showWebView = false
-    private let urlString: String = "https://www.google.com"
+    private let urlString: String = "https://classic-heathered-ophthalmologist.glitch.me/"
     
     var body: some View {
         VStack(spacing: 40) {
@@ -44,6 +45,7 @@ struct ContentView: View {
 // WebView Struct
 struct WebView: UIViewRepresentable {
     
+    
     var url: URL
     
     func makeUIView(context: Context) -> WKWebView {
@@ -53,6 +55,10 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_ webView: WKWebView, context: Context) {
         let request = URLRequest(url: url)
         webView.load(request)
+        
+        if #available(macOS 13.3, iOS 16.4, tvOS 16.4, *) {
+            webView.isInspectable = true
+        }
     }
 }
 
